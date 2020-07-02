@@ -12,5 +12,5 @@ urlpatterns = [
 
     #Use login main window
     path('home/', views.home, name = "home"),
-    path('main/',views.main, name = "main"),
+    path('mainpage/',views.mainpage, name = "mainpage"),
 ]
