@@ -9,6 +9,11 @@
 	<style type="text/javascript" src="base.js"></style>
 </head>
 <body>
+	{% if user.is_authenticated %}
+		<div class ="topnav" id = "mytopnave">
+			<a href = "{% url 'logout' %}">logout</a>
+		</div>
+	{% endif %}
 	{% block content %}
 	{% endblock %}
 </body>

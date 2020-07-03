@@ -43,7 +43,7 @@ def logout(request):
 		return render(request, 'home.html')
 @login_required
 def mainpage(request):
-	url = ""
+	url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=a961a2cacbe8a7fd5474db43e2455a3c'
 	if request.method=='POST':
 		form = CityForm(request.POST)
 		form.save()
