@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<section class = "class1">
+	<div class = "class2">
+		<div class = "container">
+			<h1 class = "title">
+				Weather forecaster Online
+			</h1>
+		</div>
+	</div>
+</section>
+<section class = "section">
+	<div class = "container">
+		<div class = "columns">
+			<div class = "columns is-offset-4 is-4">
+				<form method= "POST">
+					{% csrf_token %}
+					<div class = "field has-addons">
+						<div class = "control is-expanded">
+							{{form.name}}
+						</div>
+						<div class = "control">
+							<button type = "submit" class = "button is-info">
+								Add City
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+<section class = "section">
+	<div class = "container">
+		<div class = "columns">
+			<div class = "columns is-offset-4 is-4">
+				{% for City in weather_data %}
+				<div class = "box">
+					<article class = "media">
+						<div class = "media-left">
+							<figure class = "image is-50X50">
+								<img src="http://openweathermap.org/img/w/{{ City.icon }}.png" alt="Image">
+							</figure>
+						</div>
+						<div class = "media-content">
+							<div class = "content">
+								<p>
+									<span class="title">{{ City.city }}</span>
+                                    <br>
+                                    <span class="subtitle">{{ City.temperature }}° F</span>
+                                    <br> {{ City.description }}
+								</p>
+							</div>
+						</div>
+					</article>
+				</div> 
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+<footer class="footer">
+</footer>
+{% endblock %}
