@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class ="row justify-content-center mt-5">
-	<div class = "col-md-5">
-		<h1> Login </h1>
+<div class ="row1">
+	<div class = "col1">
+		<h1><strong>Login </strong></h1>
 	</div>
 </div>
 
-<div class = "row justify-content-center mt-5">
-	<div class = "col-md-5">
+<div class = "row1 ">
+	<div class = "col1">
 		{% if error %}
 		<div class = "alert alert-danger" role = "alert">
 			{{error}}
@@ -28,7 +28,7 @@
 		</form>
 		<hr>
 		<div class = "text-center">
-			Do not have an account ? <a href = "{% url 'register' %}">Register here </a>
+			<small>Do not have an account ? </small><a href = "{% url 'register' %}"><em>Register here </em></a>
 		</div>
 	</div>
 </div>

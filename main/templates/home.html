@@ -2,15 +2,15 @@
 {% block content %}
 <div id = "homepage">
 	<div class = "center">
-		<h1> Weather App </h1>
+		<h1><strong>Weather App</strong></h1>
 		<hr>
 		<div class = "button-group">
-			<button type="submit" id = "button1" href="{% url 'login' %}"> Login </button>
-			<button type="submit" id = "button2" href="{% url 'register' %}">Register</button>
+			<a role="button" class = "button1" href="{% url 'login' %}"> Login </a>
+			<a role="button" class = "button1" href="{% url 'register' %}">Register</a>
 		</div>
 	</div>
 <footer>
-		<h5> Developed by mesc08 </h5>
+		<small><em>Developed by mesc08</em></small>
 </footer>
 </div>
 {% endblock %}

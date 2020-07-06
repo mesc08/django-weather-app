@@ -1,17 +1,16 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Weather Application</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
-	<style type="text/javascript" src="base.js"></style>
 </head>
 <body>
 	{% if user.is_authenticated %}
 		<div class ="topnav" id = "mytopnave">
-			<a href = "{% url 'logout' %}">logout</a>
+			<a href = "{% url 'logout' %}"><em>logout</em></a>
 		</div>
 	{% endif %}
 	{% block content %}

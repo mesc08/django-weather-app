@@ -1,0 +1,20 @@
+.topnav{
+	background-color: linear gradient(to left, lightblue, lightgreen);
+	overflow: hidden;
+}
+.topnav a{
+	float : left;
+	color: #2f2f2f;
+	text-align: right;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+}
+.topnav a:hover{
+	background-color: #ddd;
+	color: black;
+}
+.topnav a.active{
+	background-color: #4CA421;
+	color: white;
+}

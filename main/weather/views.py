@@ -24,7 +24,7 @@ def register(request):
 			return redirect('main')
 	else:
 		form = UserCreationForm()
-	return render(request,'register.html',{'form': form})
+	return render(request,'register.html',{'form': form},{'error':'Username or email already exist'})
 
 def login(request):
 	if request.method=='GET':

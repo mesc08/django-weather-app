@@ -11,6 +11,6 @@ urlpatterns = [
     path('logout/',views.logout, name="logout"),
 
     #Use login main window
-    path('home/', views.home, name = "home"),
+    path('', views.home, name = "home"),
     path('mainpage/',views.mainpage, name = "mainpage"),
 ]
