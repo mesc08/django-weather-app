@@ -13,19 +13,28 @@ def home(request):
 	return render(request, 'home.html')
 
 def register(request):
-	if request.method=='POST':
-		form = UserCreationForm(request.POST)
-		if form.is_valid():
-			form.save()
-			username=form.cleaned_data.get('username')
-			raw_password=form.cleaned_data.get('password1')
-			user = authenticate(username=username, password= raw_password)
-			login(request,user)
-			return redirect('main')
+	form = UserCreationForm()
+	if request.method =='GET':
+		return render(request,'register.html',{'form': form} )
 	else:
-		form = UserCreationForm()
-	return render(request,'register.html',{'form': form},{'error':'Username or email already exist'})
-
+		if request.POST['password1']==request.POST['password2']:
+			try:
+				user = User.objects.create_user(username = request.POST['username'], firstname=request.POST['firstname'], lastname=request.POST['lastname'], email=request.POST['email'])
+				user.save()
+				login(request,user)
+				return redirect(login)
+			except IntegrityError:
+				context={
+					'form': UserCreationForm(),
+					'error': 'username and email already exit',
+				}
+				return render(request,'register.html',context)
+		else:
+			context={
+				'form': UserCreationForm(),
+				'error':'password did not match',
+			}
+			return render(request,'register.html',context)
 def login(request):
 	if request.method=='GET':
 		return render(request,'login.html',{'form':AuthenticationForm()})

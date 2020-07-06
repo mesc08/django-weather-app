@@ -1,5 +1,13 @@
-{% extends "base.html" %}
-{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Weather Application</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'working.css' %}">
+	</head>
+<body>
 <section class = "class1">
 	<div class = "class2">
 		<div class = "container">
@@ -62,4 +70,5 @@
 <footer class="footer">
 	<small> Developed by mesc08 </small>
 </footer>
-{% endblock %}
+</body>
+</html>
