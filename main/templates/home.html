@@ -1,19 +1,20 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>Weather Application</title>
-		<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+		<title>Home</title>
+		<link rel="stylesheet" type="text/css" href='{% static "home.css" %}'>
 	</head>
 <body>	
-	<div id = "homepage" class ="home">
+	<div class ="home">
 		<div class = "center">
 			<h1><strong>Weather App</strong></h1>
+			<hr>
 			<div class = "button-group">
-				<button type = "submit" onclick = "location.href='{%url 'login' %}';" > Login</button>
-				<button type = "submit" onclick = "location.href='{%url 'register' %}';" > Register</button>
+				<button class = "bt1" type = "submit" onclick = "location.href='{%url 'login' %}';" > Signin</button>
+				<button class = "bt2" type = "submit" onclick = "location.href='{%url 'register' %}';" > Signup</button>
 			</div>
 		</div>
 		<footer class ="credits">

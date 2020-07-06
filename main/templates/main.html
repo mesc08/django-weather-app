@@ -8,6 +8,11 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'working.css' %}">
 	</head>
 <body>
+{% if user.is_authenticated %}
+	<div class="topnav" id = "topnav">
+		<a href="{% url 'logout' %}">Logout</a>
+	</div>
+{% endif %}
 <section class = "class1">
 	<div class = "class2">
 		<div class = "container">
