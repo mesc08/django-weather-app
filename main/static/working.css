@@ -1,0 +1,38 @@
+{% load static %}
+body, html{
+  background: linear-gradient(to right, lightblue, lightgreen);
+}
+.home{
+	height: 100%;
+	background-position: center;
+    background-size: cover;
+	color: black;
+	font-family: 	Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	font-size: 15px;
+}
+.btn
+{
+  padding: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  width: 400px;
+  height: 80px;
+  font-family: Sans-Serif;
+}
+.btn1 {
+  background-color: white;
+  border: 3px solid #4CAF50;
+  color: #4CAF50;
+  height: inherit;
+  width: inherit;
+  transition: background-color 0.5s ease, color 1s ease;
+  cursor: pointer;
+}
+
+.btn1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+.btn1:active{
+  border: 10px dotted;
+}

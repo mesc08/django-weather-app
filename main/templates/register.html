@@ -5,6 +5,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>Register</title>
+		<link rel = "icon" href = '{% static "download.jpg" %}'  type = "image/x-icon"> 
 		<link rel="stylesheet" type="text/css" href="{% static 'authentication.css' %}">
 	</head>
 <body>
@@ -17,10 +18,11 @@
 			<br>
 			<br>
 			<br>
-			{% if messages %}
+			<br>
+			{% if error %}
 				<div class ="alert-danger" role = "alert">
 				<span class="closebtn">&times;</span>  
-					{{messages}}
+					{{error}}
 				</div>
 			{% endif %}
 			<br>
@@ -28,7 +30,10 @@
 			<br>
 			<br>
 			<br>
-			
+			<br>
+			<br>
+			<br>
+			<br>
 		<div class ="container">
 			<form method = "POST">
 				{% csrf_token %}
@@ -48,7 +53,7 @@
 			</form>
 			<hr>
 			<div class = "text-center">
-				<small>Do you already have an account?</small> <a href="{% url 'login' %}" class="so"><em>Login here </em></a>
+				<small>Do you already have an account?</small> <a href="{% url 'loginuser' %}" class="so"><em>Login here </em></a>
 			</div>
 	</div>
 </div>

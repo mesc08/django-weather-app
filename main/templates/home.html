@@ -5,6 +5,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>Home</title>
+		<link rel = "icon" href = '{% static "download.jpg" %}'  type = "image/x-icon"> 
 		<link rel="stylesheet" type="text/css" href='{% static "home.css" %}'>
 	</head>
 <body>	
@@ -13,8 +14,8 @@
 			<h1><strong>Weather App</strong></h1>
 			<hr>
 			<div class = "button-group">
-				<button class = "bt1" type = "submit" onclick = "location.href='{%url 'login' %}';" > Signin</button>
-				<button class = "bt2" type = "submit" onclick = "location.href='{%url 'register' %}';" > Signup</button>
+				<button class = "bt1" type = "submit" onclick = "location.href='{%url 'loginuser' %}';" > Signin</button>
+				<button class = "bt2" type = "submit" onclick = "location.href='{%url 'registeruser' %}';" > Signup</button>
 			</div>
 		</div>
 		<footer class ="credits">

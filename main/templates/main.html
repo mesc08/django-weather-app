@@ -1,79 +1,127 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>Weather Application</title>
-		<link rel="stylesheet" type="text/css" href="{% static 'working.css' %}">
-	</head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+	<title>WeatherApp</title>
+	<link rel = "icon" href = '{% static "download.jpg" %}'  type = "image/x-icon"> 
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href='{% static "working.css" %}'>
+</head>
 <body>
+<div class ="home">
+		{% if user.is_authenticated %}
+			<div class="golink" align="right">
+   				<form action="{% url 'logoutuser' %}">
+    				<button class="btn1 btn" type="submit">Logout </button>
+    			</form>
+				</div>
+				</br>
+			{% endif %}
+        <h1 class="title" align="center">
+                    WeatherApp
+        </h1>   
+        <hr>
 {% if user.is_authenticated %}
-	<div class="topnav" id = "topnav">
-		<a href="{% url 'logout' %}">Logout</a>
-	</div>
-{% endif %}
-<section class = "class1">
-	<div class = "class2">
-		<div class = "container">
-			<h1 class = "title">
-				<strong>Weather forecaster Online</strong>
-			</h1>
-		</div>
-	</div>
-</section>
-<section class = "section">
-	<div class = "container">
-		<div class = "columns">
-			<div class = "columns is-offset-4 is-4">
-				<form method= "POST">
-					{% csrf_token %}
-					<div class = "field has-addons">
-						<div class = "control is-expanded">
-							{{form.name}}
-						</div>
-						<div class = "control">
-							<button type = "submit" class = "button is-info">
-								Add City
-							</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</section>
-<section class = "section">
-	<div class = "container">
-		<div class = "columns">
-			<div class = "columns is-offset-4 is-4">
-				{% for City in weather_data %}
-				<div class = "box">
-					<article class = "media">
-						<div class = "media-left">
-							<figure class = "image is-50X50">
-								<img src="http://openweathermap.org/img/w/{{ City.icon }}.png" alt="Image">
-							</figure>
-						</div>
-						<div class = "media-content">
-							<div class = "content">
-								<p>
-									<span class="title">{{ City.city }}</span>
+<section class="section">
+	<p align="center" class="title is-4">Welcome {{user.username}}! Check the weather</p>
+    <form method="POST">
+    </form>
+    <br/>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-offset-4 is-4">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            {{ form.name }}
+                        </div>
+                        <div class="control">
+                            <button class="button is-info" name="city">
+                                Add City
+                            </button>
+                        </div>
+                    </div>
+                    {%if message%}
+                    <div class="notification">
+                        {{message}}
+                    </div>
+                    {%endif%}
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-offset-4 is-4">
+                {% if extended %}
+                {% for weather in ex_weather_data %}
+                <div class="box">
+                    <article class="media">
+                        <div class="media-left">
+                            <figure class="image is-50x50">
+                                <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <div class="content">
+                                <p>
+                                    <span class="title">{{ weather.city }}</span>
                                     <br>
-                                    <span class="subtitle">{{ City.temperature }}° F</span>
-                                    <br> {{ City.description }}
-								</p>
-							</div>
-						</div>
-					</article>
-				</div> 
-				{% endfor %}
-			</div>
-		</div>
-	</div>
+                                    <span class="subtitle">{{ weather.temperature }}°C, feels like {{ weather.feels_like }}°C</span>
+                                    <br> {{ weather.description }}
+                                    <br> Air pressure: {{ weather.pressure }} hPa
+                                    <br> Humidity: {{ weather.humidity }}%
+                                    <br> Wind speed: {{ weather.wind_speed }} m/s
+                                </p>
+                            </div>
+                        </div>
+                        <div class="delete">
+                            <a href="{% url 'delete' weather.city %}">
+                                <button class="delete">
+                                </button>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                {% endfor %}
+                {% else %}
+                {% for weather in weather_data %}
+                <div class="box">
+                    <article class="media">
+                        <div class="media-left">
+                            <figure class="image is-50x50">
+                                <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <div class="content">
+                                <p>
+                                    <span class="title">{{ weather.city }}</span>
+                                    <br>
+                                    <span class="subtitle">{{ weather.temperature }}°C</span>
+                                    <br> {{ weather.description }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="delete">
+                            <a href="{% url 'delete' weather.city %}">
+                                <button class="delete">
+                                </button>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                {% endfor %}
+				{% endif %}
+			{% endif %}
+            </div>
+        </div>
+    </div>
 </section>
-<footer class="footer">
-	<small> Developed by mesc08 </small>
-</footer>
+</div>
 </body>
 </html>

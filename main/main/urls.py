@@ -6,11 +6,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     #User Authentication
-    path('register/', views.register, name="register"),
-    path('login/',views.loginuser, name="login"),
-    path('logout/',views.logoutuser, name="logout"),
+    path('registeruser/', views.registeruser, name="registeruser"),
+    path('loginuser/',views.loginuser, name="loginuser"),
+    path('logoutuser/',views.logoutuser, name="logoutuser"),
 
     #Use login main window
     path('', views.home, name = "home"),
     path('mainpage/',views.mainpage, name = "mainpage"),
+    path('delete/<name>/', views.delete, name='delete'),
 ]
