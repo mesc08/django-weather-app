@@ -13,7 +13,7 @@ region. My aim will be to show the maximum details of the city.
 
 ### Languages:
 	
-```	Python, Vanilla Javascript, HTML5, CSS3 , Git```
+```	Python, Javascript, HTML5, CSS3 , Git```
 
 ### Framework in Use:
 
