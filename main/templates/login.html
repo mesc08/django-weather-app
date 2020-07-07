@@ -8,36 +8,48 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'authentication.css' %}">
 	</head>
 <body>
-<div class ="row1">
-	<div class = "col1">
-		<h1><strong>Login </strong></h1>
+<div class = "background">
+	<div class ="heading">
+			<h1><strong>Signin</strong></h1>
 	</div>
-</div>
-
-<div class = "row1 ">
-	<div class = "col1">
+<div class = "center">
 		{% if error %}
 		<div class = "alert-danger" role = "alert">
+			<span class="closebtn">&times;</span>  
 			{{error}}
 		</div>
 		{% endif %}
+	<div class= "container">
 		<form method ="POST">
 			{% csrf_token %}
-			<div class = "form-group">
+			
 				<label for = "username" >Username </label>
-				<input type = "text" name = "username" class = "form-control" id = "username">
-			</div>
-			<div class = "form-group">
+				<input type = "text" name = "username" class = "form-control" id = "username" required>
+			
 				<label for = "password" >Password </label>
-				<input type = "password" name = "password" class = "form-control" id = "password">
-			</div>
-			<button type = "submit" class = "btn btn-primary">Login</button>
+				<input type = "password" name = "password" class = "form-control" id = "password" required>
+			
+				<button type = "submit" class = "btn1">Login</button>
 		</form>
 		<hr>
 		<div class = "text-center">
-			<small>Do not have an account ? </small><a href = "{% url 'register' %}"><em>Register here </em></a>
+			<small>Do not have an account ? </small><a href = "{% url 'register' %}" class = "so"><em>Register here </em></a>
+		</div>
 		</div>
 	</div>
 </div>
+<script>
+	var close = document.getElementsByClassName("closebtn");
+	var i;
+	
+	for (i = 0; i < close.length; i++) {
+	  close[i].onclick = function(){
+		var div = this.parentElement;
+		div.style.opacity = "0";
+		setTimeout(function(){ div.style.display = "none"; }, 600);
+	  }
+	}
+	</script>
+	
 </body>
 </html>

@@ -4,14 +4,11 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm, TextInput
 from .models import City
 
-class UserCreationForm(UserCreationForm):
-	firstname = forms.CharField(max_length =30,  required = True)
-	lastname = forms.CharField(max_length=30, required=True)
-	email = forms.EmailField(max_length= 256, required=True, help_text='Required. Inform a valid email address')
+class UserForm(UserCreationForm):
+	email = forms.EmailField(max_length= 256, required=True)
 	class Meta : 
 		model =User
-		fields = ('username', 'firstname', 'lastname', 'email', 'password1', 'password2')
-
+		fields = ('username', 'email', 'password1', 'password2',)
 
 class CityForm(ModelForm):
 	class Meta:

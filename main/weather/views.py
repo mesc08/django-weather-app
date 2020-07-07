@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.utils import timezone
-from .forms import UserCreationForm, CityForm
+from .forms import UserForm, CityForm
 from .models import City
 from django.contrib.auth.decorators import login_required	
 from django.db import IntegrityError
@@ -13,29 +13,28 @@ def home(request):
 	return render(request, 'home.html')
 
 def register(request):
-	if request.method =='GET':
-		form = UserCreationForm()
-		return render(request,'register.html',{'form': form} )
-	else:
-		if request.POST['password1']==request.POST['password2']:
-			try:
-				user = User.objects.create_user(username = request.POST['username'], firstname=request.POST['firstname'], lastname=request.POST['lastname'], email=request.POST['email'])
-				user.save()
-				login(request,user)
-				return redirect(login)
-			except IntegrityError:
-				context={
-					'form': UserCreationForm(),
-					'error': 'username and email already exit',
-				}
-				return render(request,'register.html',context)
+	if request.method == 'POST':
+		uname = request.POST['username']
+		em  = request.POST['email']
+		pass1 = request.POST['password1']
+		pass2 = request.POST['password2']
+		form = UserForm()
+		if pass1 == pass2:
+			if User.objects.filter(username =uname).exists():
+				return render(request,'register.html',{'form':form,'error':'Username already taken'})
+			else:
+				if User.objects.filter(email=em).exists():
+					return render(request,'register.html',{'form':form,'error':'Email-id already taken'})
+				else:
+					user = User.objects.create_user(username=uname,email = em, password=pass1)
+					user.save()
+					return redirect('loginuser')
 		else:
-			context={
-				'form': UserCreationForm(),
-				'error':'password did not match',
-			}
-			return render(request,'register.html',context)
-def login(request):
+			return render(request,"register.html",{'form':form,'error':'Password not matching'})
+	else:
+		form = UserForm()
+		return render(request,'register.html',{'form':form})
+def loginuser(request):
 	if request.method=='GET':
 		return render(request,'login.html',{'form':AuthenticationForm()})
 	else:
@@ -43,13 +42,14 @@ def login(request):
 		if user is None:
 			return render(request,'login.html',{'form':AuthenticationForm(),'error':'username and password did not match'})
 		else:
-			login(request,user)
+			login(request, user)
 			return redirect('mainpage')	
+
 @login_required
-def logout(request):
-	if request.method=='POST':
+def logoutuser(request):
 		logout(request)
-		return render(request, 'home.html')
+		return redirect('home')
+
 @login_required
 def mainpage(request):
 	url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=a961a2cacbe8a7fd5474db43e2455a3c'

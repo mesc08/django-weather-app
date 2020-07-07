@@ -7,8 +7,8 @@ urlpatterns = [
 
     #User Authentication
     path('register/', views.register, name="register"),
-    path('login/',views.login, name="login"),
-    path('logout/',views.logout, name="logout"),
+    path('login/',views.loginuser, name="login"),
+    path('logout/',views.logoutuser, name="logout"),
 
     #Use login main window
     path('', views.home, name = "home"),
